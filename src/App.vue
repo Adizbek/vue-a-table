@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <a-table :columns="cols" :rows="rows"/>
+    <a-table :columns="cols" :rows="rows">
+      <template v-slot:rank="{row, field, value}">
+        #{{row.rank}} in local rating, field = {{field}}, value = {{value}}
+      </template>
+    </a-table>
   </div>
 </template>
 
@@ -16,10 +20,11 @@ export default {
       cols: [
         {label: 'ID', field: 'id'},
         {label: 'Name', field: 'name'},
+        {label: 'Rank', field: 'rank'},
       ],
       rows: [
-        {id: 1, name: "Adizbek"},
-        {id: 2, name: "Lazizbek"}
+        {id: 1, name: "Adizbek", rank: 50},
+        {id: 2, name: "Lazizbek", rank: 569}
       ],
     }
   }

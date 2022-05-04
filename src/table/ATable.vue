@@ -20,8 +20,11 @@
     <tbody v-if="transformedTableRows.length > 0">
     <tr v-for="row in transformedTableRows" :key="getRowKey(row)">
       <td :key="td.field" v-for="td in bottomColumns" :class="`text-${td.dataAlign || 'left'}`" :width="td.width">
-        <component v-if="td.component" :is="td.component" :column="td.field" :row="row" :rows="rows" row-type="data"
-                   :value="_get(row, td.field) "/>
+        <slot :name="td.field" v-if="$scopedSlots[td.field]" v-bind="{row, value: _get(row, td.field), field: td.field}"></slot>
+
+        <component v-else-if="td.component" :is="td.component" :column="td.field" :row="row" :rows="rows" row-type="data"
+                   :value="_get(row, td.field)"/>
+
         <span v-else>{{ _get(row, td.field) }}</span>
       </td>
     </tr>
