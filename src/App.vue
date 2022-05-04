@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <a-table :columns="cols" :rows="rows"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ATable from "@/table/ATable";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: {ATable},
+
+  data() {
+    return {
+      cols: [
+        {label: 'ID', field: 'id'},
+        {label: 'Name', field: 'name'},
+      ],
+      rows: [
+        {id: 1, name: "Adizbek"},
+        {id: 2, name: "Lazizbek"}
+      ],
+    }
   }
 }
 </script>
