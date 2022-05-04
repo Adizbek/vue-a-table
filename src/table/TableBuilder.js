@@ -20,8 +20,7 @@
  * @property {'left'|'right'|'center'} dataAlign
  * @property {'left'|'right'|'center'} footerAlign
  * @property {string|string[]|function|function[]} footer
- * @property {Partial<Vue.ComponentOptions>} component
- * @property {boolean} useComponentForFooter
+ * @property {boolean} useTemplateForFooter
  * @property {?ValueTransformCallback} valueTransform
  * @property {?ValueResolverCallback} valueResolver
 

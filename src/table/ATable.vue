@@ -20,10 +20,8 @@
     <tbody v-if="transformedTableRows.length > 0">
     <tr v-for="row in transformedTableRows" :key="getRowKey(row)">
       <td :key="td.field" v-for="td in bottomColumns" :class="`text-${td.dataAlign || 'left'}`" :width="td.width">
-        <slot :name="td.field" v-if="$scopedSlots[td.field]" v-bind="{row, value: _get(row, td.field), field: td.field}"></slot>
-
-        <component v-else-if="td.component" :is="td.component" :column="td.field" :row="row" :rows="rows" row-type="data"
-                   :value="_get(row, td.field)"/>
+        <slot :name="td.field" v-if="$scopedSlots[td.field]"
+              v-bind="{rows, row, value: _get(row, td.field), field: td.field, type: 'body'}"/>
 
         <span v-else>{{ _get(row, td.field) }}</span>
       </td>
@@ -34,8 +32,9 @@
     <tr v-for="row in transformedFooterRows" :key="getRowKey(row)">
       <th :key="td.field" v-for="td in bottomColumns" :class="`text-${td.footerAlign || td.dataAlign || 'left'}`"
           :width="td.width">
-        <component v-if="td.useComponentForFooter && td.component" :is="td.component" :column="td.field" :row="row"
-                   :rows="rows" row-type="footer" :value="row[td.field]"/>
+        <slot :name="td.field" v-if="td.useTemplateForFooter && $scopedSlots[td.field]"
+              v-bind="{rows, row, value: _get(row, td.field), field: td.field, type: 'footer'}"/>
+
         <span v-else>{{ row[td.field] }}</span>
       </th>
     </tr>
