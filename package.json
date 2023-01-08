@@ -1,9 +1,14 @@
 {
   "name": "vue-a-table",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "author": {
-    "name": "Adizbek"
+    "name": "Adizbek Ergashev"
+  },
+  "description": "Vue.js table rendering component",
+  "repository": {
+    "url": "https://github.com/Adizbek/vue-a-table",
+    "type": "git"
   },
   "main": "src/plugin.js",
   "scripts": {

@@ -4,6 +4,16 @@
       <template v-slot:rank="{row, field, value}">
         #{{ row.rank }} in local rating, field = {{ field }}, value = {{ value }}
       </template>
+
+      <template #empty>
+        <div>No data here!</div>
+      </template>
+    </a-table>
+
+    <a-table :columns="cols" :rows="[]">
+      <template #empty>
+        <div>No data here!</div>
+      </template>
     </a-table>
 
     <a-paginated-table :columns="cols" :rows="rows" :links="links"/>

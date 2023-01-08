@@ -28,6 +28,14 @@
     </tr>
     </tbody>
 
+    <tbody v-else-if="$slots.empty">
+      <tr>
+        <td :colspan="bottomColumns.length">
+          <slot name="empty"></slot>
+        </td>
+      </tr>
+    </tbody>
+
     <tfoot v-if="transformedFooterRows.length > 0" class="thead-light">
     <tr v-for="row in transformedFooterRows" :key="getRowKey(row)">
       <th :key="td.field" v-for="td in bottomColumns" :class="`text-${td.footerAlign || td.dataAlign || 'left'}`"
