@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <a-table :columns="cols" :rows="rows">
-      <template v-slot:rank="{row, field, value}">
+      <template v-slot:rank="{row, field, value, originalRow}">
         #{{ row.rank }} in local rating, field = {{ field }}, value = {{ value }}
+
+        <input type="number" v-model="originalRow[field]">
       </template>
 
       <template #empty>

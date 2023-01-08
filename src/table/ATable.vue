@@ -21,7 +21,7 @@
     <tr v-for="row in transformedTableRows" :key="getRowKey(row)">
       <td :key="td.field" v-for="td in bottomColumns" :class="`text-${td.dataAlign || 'left'}`" :width="td.width">
         <slot :name="td.field" v-if="$scopedSlots[td.field]"
-              v-bind="{rows, row, value: _get(row, td.field), field: td.field, type: 'body'}"/>
+              v-bind="{rows, row, value: _get(row, td.field), field: td.field, type: 'body', originalRow: row._original}"/>
 
         <span v-else>{{ _get(row, td.field) }}</span>
       </td>
@@ -29,11 +29,11 @@
     </tbody>
 
     <tbody v-else-if="$slots.empty">
-      <tr>
-        <td :colspan="bottomColumns.length">
-          <slot name="empty"></slot>
-        </td>
-      </tr>
+    <tr>
+      <td :colspan="bottomColumns.length">
+        <slot name="empty"></slot>
+      </td>
+    </tr>
     </tbody>
 
     <tfoot v-if="transformedFooterRows.length > 0" class="thead-light">
@@ -163,7 +163,7 @@ export default {
     },
 
     transformValues(object) {
-      let newData = {...object};
+      let newData = {...object, _original: object};
 
       for (let key of this.transformerKeys) {
         newData[key] = this.valueTransforms[key](object[key], key, object)
