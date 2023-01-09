@@ -19,6 +19,11 @@
     </a-table>
 
     <a-paginated-table :columns="cols" :rows="rows" :links="links"/>
+    <a-paginated-table :columns="cols" :rows="[]" :links="links">
+      <template #empty>
+        <div>No data here!</div>
+      </template>
+    </a-paginated-table>
   </div>
 </template>
 

@@ -28,9 +28,9 @@
     </tr>
     </tbody>
 
-    <tbody v-else-if="$slots.empty">
+    <tbody v-else-if="$scopedSlots.empty">
     <tr>
-      <td :colspan="bottomColumns.length === 0">
+      <td :colspan="bottomColumns.length">
         <slot name="empty"></slot>
       </td>
     </tr>
