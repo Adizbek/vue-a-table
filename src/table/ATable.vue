@@ -30,7 +30,7 @@
 
     <tbody v-else-if="$slots.empty">
     <tr>
-      <td :colspan="bottomColumns.length">
+      <td :colspan="bottomColumns.length === 0">
         <slot name="empty"></slot>
       </td>
     </tr>
